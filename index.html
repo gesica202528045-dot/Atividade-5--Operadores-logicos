@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Habilitação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        .campo {
+            margin-bottom: 15px;
+        }
+
+        /* Estilos solicitados no CSS */
+        .pode {
+            color: green;
+            font-weight: bold;
+        }
+
+        .nao-pode {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Verificação de Permissão para Dirigir</h2>
+
+    <div class="campo">
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" placeholder="Digite sua idade" min="0">
+    </div>
+
+    <div class="campo">
+        <label>
+            <input type="checkbox" id="cnh"> Possui CNH?
+        </label>
+    </div>
+
+    <button onclick="verificar()">Verificar</button>
+
+    <h3 id="resultado"></h3>
+
+    <script>
+        function verificar() {
+            // Obtém os valores dos campos
+            const idadeInput = document.getElementById('idade').value;
+            const idade = Number(idadeInput);
+            const possuiCNH = document.getElementById('cnh').checked;
+            const elementoResultado = document.getElementById('resultado');
+
+            // Uso do operador lógico AND (&&) para checar ambas as condições
+            const podeDirigir = (idade >= 18) && possuiCNH;
+
+            // Atualização da mensagem e da cor do texto (CSS)
+            if (podeDirigir) {
+                elementoResultado.textContent = "Pode dirigir";
+                elementoResultado.className = "pode";
+            } else {
+                elementoResultado.textContent = "Não pode dirigir";
+                elementoResultado.className = "nao-pode";
+            }
+        }
+    </script>
+
+</body>
+</html>
